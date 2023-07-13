@@ -35,34 +35,32 @@ import ReactDOM from 'react-dom';
 export default function Index() {
     const [inputValue, setInputValue] = React.useState('');
 
-    const showInput = function(){
+    const showInput = function () {
         const inputElement = document.getElementById("userInput")
         const inputValue = inputElement.value
         setInputValue(inputValue)
     }
-    /*async function postData(url, data) {
-        // 옵션 기본 값은 *로 강조
+    async function postData(url, data) {
         const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE 등
-        headers: {
-            'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+            method: 'POST', // *GET, POST, PUT, DELETE 등
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: { 'name': data }, // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
         });
         return response.json(); // JSON 응답을 네이티브 JavaScript 객체로 파싱
     }
-  
-  postData('https://example.com/answer', { inputValue }).then((data) => {
-    console.log(data); // JSON 데이터가 `data.json()` 호출에 의해 파싱됨
-  });*/
-  
-  return (
-  <div>
-    <input type="text" id="userInput" placeholder="질문을 하시오"/>
-    <button className="border-black border-2 px-1" onClick={showInput}>제출</button>
-    <div>{"질문: "+ inputValue}</div>
-    <div>답변:</div>
-  </div>
-  )
-  }
+
+    postData('https://example.com/answer', { inputValue }).then((data) => {
+        console.log(data); // JSON 데이터가 `data.json()` 호출에 의해 파싱됨/ data : 객체임(response.json())
+    });
+
+    return (
+        <div>
+            <input type="text" id="userInput" placeholder="질문을 하시오" />
+            <button className="border-black border-2 px-1" onClick={showInput}>제출</button>
+            <div>{"질문: " + inputValue}</div>
+            <div>답변:</div>
+        </div>
+    )
+}
